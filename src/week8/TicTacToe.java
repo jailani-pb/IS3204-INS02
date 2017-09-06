@@ -20,7 +20,7 @@ public class TicTacToe {
 		char playerSymbol;
 		// For user input
 		String userInput;
-		
+
 		while(!someoneWins) {
 			// Print the tic tac toe board
 			System.out.println("\\ y    0      1      2");
@@ -33,7 +33,7 @@ public class TicTacToe {
 				System.out.println();
 				System.out.println("    =====================");
 			}
-			
+
 			// Ask user input for coordinate to add symbol to.
 			if(player1Turn) {
 				// Player 1
@@ -60,6 +60,36 @@ public class TicTacToe {
 					if(board[x][y] == ' ') {
 						// Update the board
 						board[x][y] = playerSymbol;
+
+						// Check if someone wins
+						// Check for all rows
+						for(int i = 0; i < 3; i++) {
+							if(board[i][0] == playerSymbol &&
+									board[i][1] == playerSymbol &&
+									board[i][2] == playerSymbol) {
+								someoneWins = true;
+							}
+						}
+						// Check for all columns
+						for(int i = 0; i < 3; i++) {
+							if(board[0][i] == playerSymbol &&
+									board[1][i] == playerSymbol &&
+									board[2][i] == playerSymbol) {
+								someoneWins = true;
+							}
+						}
+						// Check for diagonal
+						if(board[0][0] == playerSymbol &&
+								board[1][1] == playerSymbol &&
+								board[2][2] == playerSymbol) {
+							someoneWins = true;
+						}
+						if(board[0][2] == playerSymbol &&
+								board[1][1] == playerSymbol &&
+								board[2][0] == playerSymbol) {
+							someoneWins = true;
+						}
+
 						// Change player
 						// Don't change player if someone wins
 						if(!someoneWins) {
@@ -68,22 +98,38 @@ public class TicTacToe {
 					} else {
 						System.out.println("That coordinate has been used.");
 					}
-					
+
 				} else {
 					System.out.println("Invalid input.");
 				}
-				
-				
+
+
 			} else {
 				System.out.println("Invalid input.");
 			}
-				
+
 		}
-		
-		
+
+		// Print the tic tac toe board
+		System.out.println("\\ y    0      1      2");
+		System.out.println("x   =====================");
+		for(int x = 0; x < board.length; x++) {
+			System.out.print(x + "   ");
+			for(int y = 0; y < board[x].length; y++) {
+				System.out.print("|  " + board[x][y] + "  |");
+			}
+			System.out.println();
+			System.out.println("    =====================");
+		}
+		if(player1Turn) {
+			System.out.println("Player 1 won.");
+		} else {
+			System.out.println("Player 2 won.");
+		}
+
 		scanner.close();
 	}
-	
+
 }
 
 
