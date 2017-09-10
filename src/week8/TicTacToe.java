@@ -14,6 +14,8 @@ public class TicTacToe {
 		};
 		// To notify if someone have won the game
 		boolean someoneWins = false;
+		// To notify if draw
+		boolean draw = false;
 		// To notify which player is playing
 		boolean player1Turn = true;
 		// Player 1 symbol O and Player 2 symbol X
@@ -21,7 +23,7 @@ public class TicTacToe {
 		// For user input
 		String userInput;
 
-		while(!someoneWins) {
+		while(!someoneWins && !draw) {
 			// Print the tic tac toe board
 			System.out.println("\\ y    0      1      2");
 			System.out.println("x   =====================");
@@ -89,6 +91,23 @@ public class TicTacToe {
 								board[2][0] == playerSymbol) {
 							someoneWins = true;
 						}
+						
+						// Check for draw
+						boolean gotEmptySpace = false;
+						for(int i = 0; i < 3; i++) {
+							for(int j = 0; j < 3; j++) {
+								if(board[i][j] == ' ') {
+									gotEmptySpace = true;
+									break;
+								}
+								if(i == 2 && j == 2) {
+									draw = true;
+								}
+							}
+							if(gotEmptySpace) {
+								break;
+							}
+						}
 
 						// Change player
 						// Don't change player if someone wins
@@ -121,10 +140,14 @@ public class TicTacToe {
 			System.out.println();
 			System.out.println("    =====================");
 		}
-		if(player1Turn) {
-			System.out.println("Player 1 won.");
+		if(someoneWins) { 
+			if(player1Turn) {
+				System.out.println("Player 1 wins");
+			} else {
+				System.out.println("Player 2 wins");
+			}
 		} else {
-			System.out.println("Player 2 won.");
+			System.out.println("Draw");
 		}
 
 		scanner.close();
