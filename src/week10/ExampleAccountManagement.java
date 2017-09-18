@@ -80,6 +80,7 @@ public class ExampleAccountManagement {
 				break;
 			} else {
 				System.out.println("Invalid email and password.");
+				break;
 			}
 		}
 	}
