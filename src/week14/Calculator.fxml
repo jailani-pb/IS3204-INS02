@@ -43,7 +43,7 @@
 				<Button text="/" onAction="#calculate"/>
 			</HBox>
 		</VBox>
-		<Button styleClass="button-lg" text="=" onAction="#clear"/>
+		<Button styleClass="button-lg" text="=" onAction="#calculate"/>
 	</HBox>
 </VBox>
 
